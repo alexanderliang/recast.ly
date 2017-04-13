@@ -15,11 +15,12 @@ var hasSameShape = function(objectOne, objectTwo) {
   }
 
   for (var key in objectOne) {
-    if (!key in objectTwo) {
+    if (!key in objectTwo) { 
       return false;
     }
 
     if (typeof objectOne[key] !== typeof objectTwo[key]) {
+      console.log(key,  objectOne,  objectTwo)
       return false;
     }
 
