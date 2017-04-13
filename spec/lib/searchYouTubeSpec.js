@@ -20,7 +20,6 @@ var hasSameShape = function(objectOne, objectTwo) {
     }
 
     if (typeof objectOne[key] !== typeof objectTwo[key]) {
-      console.log(key,  objectOne,  objectTwo)
       return false;
     }
 
