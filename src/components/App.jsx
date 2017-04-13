@@ -22,12 +22,9 @@ class App extends React.Component {
     // this.setState({
     //   clickedVideo: 
     // })
-    var clickVideo = function(videoObject){
       this.setState({
         video: videoObject
       })
-    }
-    return this.clickVideo.bind(this, videoObject);
     //var clickVideo = fn({}){this.setState({video: {clicked video object}})}
     // return this.clickVideo.bind(this, {})
   }
@@ -40,7 +37,7 @@ class App extends React.Component {
           <VideoPlayer video = {this.state.video} />
         </div>
         <div className="col-md-5">
-          <VideoList videos = {exampleVideoData} state= {this.state} />
+          <VideoList videos = {exampleVideoData} setVideo= {this._clickVideo.bind(this)} />
         </div>
       </div>
 
