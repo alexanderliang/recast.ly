@@ -14,34 +14,50 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      video: exampleVideoData[0]
-    }
+      video: exampleVideoData[0],
+      response: false
+    };
   }
 
   _clickVideo(videoObject){
-    // this.setState({
-    //   clickedVideo: 
-    // })
       this.setState({
         video: videoObject
       })
-    //var clickVideo = fn({}){this.setState({video: {clicked video object}})}
-    // return this.clickVideo.bind(this, {})
+  }
+  
+
+  componentDidMount(){
+    var _retrieveVideos = function(videos){
+      this.setState({response: videos}); 
+    };
+    searchYouTube(null, _retrieveVideos.bind(this));
   }
 
   render () {
-  	return (
-      <div>
-        <Nav />
-        <div className="col-md-7">
-          <VideoPlayer video = {this.state.video} />
-        </div>
-        <div className="col-md-5">
-          <VideoList videos = {exampleVideoData} setVideo= {this._clickVideo.bind(this)} />
-        </div>
-      </div>
 
-  	)
+    
+    console.log('render', this.data);
+    // console.log('hi', window.youTubeData);
+    // var scope = this;
+    // setTimeout(function(){
+    //   console.log(scope.data);
+    // }, 500)
+    if (this.state.response){
+      return (
+        <div>
+          <Nav />
+          <div className="col-md-7">
+            <VideoPlayer video = {this.state.response[0]} />
+          </div>
+          <div className="col-md-5">
+            <VideoList videos = {this.state.response} setVideo= {this._clickVideo.bind(this)} />
+          </div>
+        </div>
+
+    	)
+    } else {
+      return(<div>Waiting</div>)
+    }
   }
 }
 

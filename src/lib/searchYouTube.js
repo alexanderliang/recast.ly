@@ -1,7 +1,11 @@
 
 
 var searchYouTube = (options, callback) => {
-  //console.log(options);
+  options = options || {
+    key: YOUTUBE_API_KEY,
+    query: 'eminem',
+    max: 20
+  };
   $.ajax({
     context: this,
     url: 'https://www.googleapis.com/youtube/v3/search',
@@ -11,12 +15,11 @@ var searchYouTube = (options, callback) => {
       q: options.query,
       maxResults: options.max,
       type: 'video',
+      videoEmbedabble: true,
       part: 'snippet'
     },
     contentType: 'application/json',
     success: function(data){
-    	console.dir(data)
-      //console.log('Retrieved videos', JSON.stringify(data))
       callback(data.items);
     },
     error: function(data) {
@@ -27,11 +30,11 @@ var searchYouTube = (options, callback) => {
 
 window.searchYouTube = searchYouTube;
 
+// var _retrieveVideos = function (videos){
+//   window.youTubeData = videos;   
+// }
+// searchYouTube(null, _retrieveVideos);
 
 
-// {
-//       key: YOUTUBE_API_KEY,
-//       q: 'hello adele', 
-//       maxResults: 40,
-//       part: 'snippet'  
-//     }
+
+
